@@ -15,3 +15,16 @@
  */
 
 package com.example.android.devbyteviewer.database
+
+import androidx.lifecycle.LiveData
+import retrofit2.http.Query
+
+
+@Dao
+interface VideoDao {
+    @Query("select * from databasevideo")
+    fun getVideos(): LiveData<List<DatabaseVideo>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll( videos: List<DatabaseVideo>)
+}
